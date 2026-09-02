@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SPPG Getassrabi 02 — Informasi Menu MBG",
+  title: "SPPG 02 Getassrabi — Informasi Menu MBG",
   description:
     "Portal informasi layanan Makan Bergizi Gratis SPPG Getassrabi 02: menu harian, kandungan gizi, dan jumlah porsi.",
 };

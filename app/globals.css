@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-sans-raw), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-raw), Georgia, "Times New Roman", serif;
 
-  --color-navy: #10294d;
-  --color-navy-light: #173b63;
-  --color-teal-dark: #185566;
-  --color-green: #14704e;
-  --color-gold: #d6b967;
-  --color-gold-bg: #fff7df;
+  --color-navy: #122a4c;
+  --color-navy-light: #1b3e68;
+  --color-teal-dark: #123b45;
+  --color-green: #167a4f;
+  --color-gold: #c9a227;
+  --color-gold-bg: #fbf3da;
 
-  --color-bg: #f5f8f7;
-  --color-soft: #f8fbfa;
-  --color-line: #dde7e2;
-  --color-text: #19332a;
-  --color-muted: #70807a;
+  --color-bg: #f7f5ef;
+  --color-soft: #fbfaf6;
+  --color-line: #e6e1d3;
+  --color-text: #1e2a22;
+  --color-muted: #6f6b5d;
   --color-danger: #b2463c;
 
-  --shadow-card: 0 12px 32px rgba(16, 41, 77, 0.07);
+  --shadow-card: 0 10px 28px rgba(18, 42, 76, 0.08);
 }
 
 body {
@@ -29,6 +30,27 @@ body {
 .card {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: 20px;
+  border-radius: 18px;
   box-shadow: var(--shadow-card);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.article-content p {
+  margin-bottom: 14px;
+}
+
+.article-content img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 18px 0;
+}
+
+.article-content h2,
+.article-content h3 {
+  color: var(--color-navy);
+  font-weight: 700;
+  margin: 20px 0 10px;
 }

@@ -43,26 +43,21 @@ export function MenuQrCode({
     return <span className="text-muted text-[10px]">Memuat...</span>;
   }
 
-   return (
-    <div className="flex flex-col items-center gap-1">
-      <button
-        onClick={handleDownload}
-        title={`Unduh QR menu ${menuName}`}
-        className="flex flex-col items-center gap-1 group"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={dataUrl}
-          alt={`QR menu ${menuDate}`}
-          className="w-10 h-10 rounded-md border border-line"
-        />
-        <span className="text-[9px] text-navy font-medium group-hover:underline">
-          Unduh
-        </span>
-      </button>
-      <span className="text-[8px] text-muted max-w-[110px] break-all text-center">
-        {debugUrl}
+     return (
+    <button
+      onClick={handleDownload}
+      title={`Unduh QR menu ${menuName}`}
+      className="flex flex-col items-center gap-1 group"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={dataUrl}
+        alt={`QR menu ${menuDate}`}
+        className="w-10 h-10 rounded-md border border-line"
+      />
+      <span className="text-[9px] text-navy font-medium group-hover:underline">
+        Unduh
       </span>
-    </div>
+    </button>
   );
 }

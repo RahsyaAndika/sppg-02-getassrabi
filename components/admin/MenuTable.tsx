@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import { formatTanggalPendek } from "@/lib/utils/date";
 import { deleteMenu } from "@/app/admin/menu/actions";
+import { MenuQrCode } from "@/components/admin/MenuQrCode";
 
 type MenuRow = {
   id: string;
@@ -49,6 +50,7 @@ export function MenuTable({ menus }: { menus: MenuRow[] }) {
               <th className="p-3 font-bold">Nama Menu</th>
               <th className="p-3 font-bold">Total Porsi</th>
               <th className="p-3 font-bold">Status</th>
+              <th className="p-3 font-bold text-center">QR Menu</th>
               <th className="p-3 font-bold text-right">Aksi</th>
             </tr>
           </thead>
@@ -70,6 +72,11 @@ export function MenuTable({ menus }: { menus: MenuRow[] }) {
                   >
                     {menu.status === "published" ? "Terbit" : "Draft"}
                   </span>
+                </td>
+                <td className="p-3 text-center">
+                  <div className="flex justify-center">
+                    <MenuQrCode menuDate={menu.menu_date} menuName={menu.menu_name} />
+                  </div>
                 </td>
                 <td className="p-3">
                   <div className="flex justify-end gap-2 whitespace-nowrap">

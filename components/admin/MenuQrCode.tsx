@@ -11,12 +11,14 @@ export function MenuQrCode({
   menuName: string;
 }) {
   const [dataUrl, setDataUrl] = useState("");
+  const [debugUrl, setDebugUrl] = useState("");
 
   useEffect(() => {
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       (typeof window !== "undefined" ? window.location.origin : "");
     const targetUrl = `${siteUrl}/menu/${menuDate}`;
+    setDebugUrl(targetUrl);
 
     QRCode.toDataURL(targetUrl, {
       width: 96,
@@ -37,25 +39,30 @@ export function MenuQrCode({
     document.body.removeChild(link);
   }
 
-  if (!dataUrl) {
+    if (!dataUrl) {
     return <span className="text-muted text-[10px]">Memuat...</span>;
   }
 
-  return (
-    <button
-      onClick={handleDownload}
-      title={`Unduh QR menu ${menuName}`}
-      className="flex flex-col items-center gap-1 group"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={dataUrl}
-        alt={`QR menu ${menuDate}`}
-        className="w-10 h-10 rounded-md border border-line"
-      />
-      <span className="text-[9px] text-navy font-medium group-hover:underline">
-        Unduh
+   return (
+    <div className="flex flex-col items-center gap-1">
+      <button
+        onClick={handleDownload}
+        title={`Unduh QR menu ${menuName}`}
+        className="flex flex-col items-center gap-1 group"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={dataUrl}
+          alt={`QR menu ${menuDate}`}
+          className="w-10 h-10 rounded-md border border-line"
+        />
+        <span className="text-[9px] text-navy font-medium group-hover:underline">
+          Unduh
+        </span>
+      </button>
+      <span className="text-[8px] text-muted max-w-[110px] break-all text-center">
+        {debugUrl}
       </span>
-    </button>
+    </div>
   );
 }

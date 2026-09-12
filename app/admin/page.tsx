@@ -17,7 +17,7 @@ async function getDashboardData() {
     { count: totalArticles },
     { count: activeAnnouncements },
   ] = await Promise.all([
-    supabase.from("profiles").select("name, role").eq("id", user!.id).single(),
+    supabase.from("profiles").select("name, role, avatar_url").eq("id", user!.id).single(),
     supabase.from("menus").select("*", { count: "exact", head: true }),
     supabase.from("menus").select("id, menu_name").eq("menu_date", today).maybeSingle(),
     supabase.from("articles").select("*", { count: "exact", head: true }),
@@ -30,6 +30,7 @@ async function getDashboardData() {
   return {
     name: profile?.name ?? "Admin",
     role: profile?.role ?? "admin",
+    avatarUrl: profile?.avatar_url ?? "",
     totalMenus: totalMenus ?? 0,
     menuTodayName: menuToday?.menu_name ?? null,
     totalArticles: totalArticles ?? 0,
@@ -80,6 +81,7 @@ export default async function AdminDashboardPage() {
         name={data.name}
         roleLabel={ROLE_LABELS[data.role] ?? data.role}
         initial={initial}
+        avatarUrl={data.avatarUrl}
       />
 
       <h2 className="font-display text-navy text-[18px] mb-4">Ringkasan</h2>

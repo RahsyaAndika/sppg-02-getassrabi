@@ -1,22 +1,8 @@
-import type { DailyMenu,  } from "@/types/menu";
+import type { DailyMenu } from "@/types/menu";
 import { PortionGroup } from "@/types/menu";
+import { Flame, Users } from "lucide-react";
 
 const GROUPS: PortionGroup[] = ["big", "small", "toddler", "preg", "breast"];
-
-export function TotalPortionsCard({ total }: { total: number }) {
-  return (
-    <section className="card p-[24px] my-4">
-      <h2 className="font-display text-navy text-[20px] mb-1">Total porsi</h2>
-      <p className="text-muted text-[12px] mb-4">Jumlah porsi yang diproduksi hari ini.</p>
-      <div className="bg-soft border border-line rounded-2xl p-[20px] max-w-[360px]">
-        <small className="text-muted text-[11px]">Total porsi hari ini</small>
-        <strong className="block font-display text-navy text-[34px] mt-1">
-          {total.toLocaleString("id-ID")}
-        </strong>
-      </div>
-    </section>
-  );
-}
 
 export function NutritionGrid({ menu }: { menu: DailyMenu | null }) {
   const labs: [keyof NonNullable<DailyMenu["nutrition"]["big"]>, string, string][] = [
@@ -29,7 +15,10 @@ export function NutritionGrid({ menu }: { menu: DailyMenu | null }) {
 
   return (
     <section className="card p-[24px] my-4">
-      <h2 className="font-display text-navy text-[20px] mb-1">Analisis gizi per porsi</h2>
+      <div className="flex items-center gap-2 mb-1">
+        <Flame size={17} className="text-gold" />
+        <h2 className="font-display text-navy text-[20px] m-0">Analisis gizi per porsi</h2>
+      </div>
       <p className="text-muted text-[12px] mb-4">Nilai gizi dipisahkan berdasarkan kelompok porsi.</p>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-[10px]">
         {GROUPS.map((k) => {
@@ -56,7 +45,10 @@ export function NutritionGrid({ menu }: { menu: DailyMenu | null }) {
 export function PortionsPerGroup({ menu }: { menu: DailyMenu | null }) {
   return (
     <section className="card p-[24px] my-4">
-      <h2 className="font-display text-navy text-[20px] mb-1">Jumlah porsi per kelompok</h2>
+      <div className="flex items-center gap-2 mb-1">
+        <Users size={17} className="text-green" />
+        <h2 className="font-display text-navy text-[20px] m-0">Jumlah porsi per kelompok</h2>
+      </div>
       <p className="text-muted text-[12px] mb-4">Rincian produksi berdasarkan kelompok sasaran.</p>
       <div className="grid grid-cols-3 md:grid-cols-5 gap-[10px]">
         {GROUPS.map((k) => (
@@ -68,29 +60,6 @@ export function PortionsPerGroup({ menu }: { menu: DailyMenu | null }) {
             <small className="text-muted text-[10px]">porsi</small>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-export function BenefitsCard({ benefits }: { benefits: string[] }) {
-  return (
-    <section className="card p-[24px] my-4">
-      <h2 className="font-display text-navy text-[20px] mb-1">Penerima manfaat</h2>
-      <p className="text-muted text-[12px] mb-4">Kelompok penerima yang dilayani SPPG.</p>
-      <div className="flex flex-wrap gap-[8px]">
-        {benefits.length > 0 ? (
-          benefits.map((b, i) => (
-            <span
-              key={i}
-              className="px-[12px] py-[7px] rounded-full bg-[#EEF6EF] text-green border border-[#DCEEE1] text-[11px] font-medium"
-            >
-              {b}
-            </span>
-          ))
-        ) : (
-          <span className="text-muted text-[12px]">Belum ada data.</span>
-        )}
       </div>
     </section>
   );

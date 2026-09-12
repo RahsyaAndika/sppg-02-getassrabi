@@ -68,8 +68,7 @@ export function AnnouncementForm({
           className="w-full p-[10px] border border-line rounded-[10px] text-sm"
         />
       </div>
-
-      <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label className="block text-[10px] font-bold text-navy mb-1">
             Tanggal Publikasi

@@ -2,12 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroSection } from "@/components/menu/HeroSection";
 import { MenuTodayCard } from "@/components/menu/MenuTodayCard";
-import {
-  TotalPortionsCard,
-  NutritionGrid,
-  PortionsPerGroup,
-  BenefitsCard,
-} from "@/components/menu/PortionSummary";
+import { NutritionGrid, PortionsPerGroup } from "@/components/menu/PortionSummary";
+import { TotalPortionsAndBenefits } from "@/components/menu/TotalPortionsAndBenefits";
 import { getMenuByDate } from "@/lib/supabase/queries";
 import { mapToDailyMenu } from "@/lib/utils/menu-mapper";
 
@@ -36,10 +32,9 @@ export default async function MenuDetailPage({
         </div>
 
         <MenuTodayCard menu={menu} />
-        <TotalPortionsCard total={menu.totalPortions} />
+        <TotalPortionsAndBenefits total={menu.totalPortions} benefits={menu.benefits} />
         <NutritionGrid menu={menu} />
         <PortionsPerGroup menu={menu} />
-        <BenefitsCard benefits={menu.benefits} />
       </div>
     </>
   );

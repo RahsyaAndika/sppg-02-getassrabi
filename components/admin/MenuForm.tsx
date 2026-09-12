@@ -252,7 +252,7 @@ export function MenuForm({
 
             <div className="card p-5">
         <h3 className="text-navy text-[13px] font-bold mb-3">Foto Menu</h3>
-        <div className="flex items-start gap-4">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
           <div className="w-[160px] h-[120px] border border-dashed border-line rounded-xl bg-soft overflow-hidden flex items-center justify-center text-muted text-[10px] shrink-0">
             {values.photoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -275,9 +275,8 @@ export function MenuForm({
             {uploadError && (
               <p className="text-danger text-[11px] mt-2">{uploadError}</p>
             )}
-            <p className="text-muted text-[10px] mt-2">
-              Format JPG/PNG/WebP,
-              maksimal 3MB.
+            <p className="text-muted text-[10px] mt-2 break-words">
+              Format JPG/PNG/WebP, maksimal 3MB.
             </p>
           </div>
         </div>

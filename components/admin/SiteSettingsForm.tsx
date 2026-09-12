@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { updateSiteSettings, type SiteSettingsFormValues } from "@/app/admin/settings/actions";
 import { uploadImage } from "@/lib/utils/upload";
+import { Image as ImageIcon, UserRound, Info, Share2, PanelBottom } from "lucide-react";
 
 export function SiteSettingsForm({
   initialValues,
@@ -39,7 +40,7 @@ export function SiteSettingsForm({
     update("logoUrl", result.url);
   }
 
-    async function handleProfilePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleProfilePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -82,7 +83,10 @@ export function SiteSettingsForm({
       )}
 
       <div className="card p-5">
-        <h3 className="text-navy text-[13px] font-bold mb-3">Logo</h3>
+        <div className="flex items-center gap-2 mb-3">
+          <ImageIcon size={16} className="text-green" />
+          <h3 className="font-display text-navy text-[15px] m-0">Logo</h3>
+        </div>
         <div className="flex items-center gap-4">
           <div className="w-[76px] h-[76px] border border-line bg-soft rounded-2xl overflow-hidden flex items-center justify-center text-muted text-[9px] shrink-0">
             {values.logoUrl ? (
@@ -107,11 +111,14 @@ export function SiteSettingsForm({
         </div>
       </div>
 
-            <div className="card p-5">
-        <h3 className="text-navy text-[13px] font-bold mb-3">
-          Foto Profil SPPG (tampil di halaman Profil)
-        </h3>
-        <div className="flex items-center gap-4">
+      <div className="card p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <UserRound size={16} className="text-green" />
+          <h3 className="font-display text-navy text-[15px] m-0">
+            Foto Profil SPPG (tampil di halaman Profil)
+          </h3>
+        </div>
+        <div className="flex flex-col sm:flex-row items-start gap-4">
           <div className="w-[120px] h-[80px] border border-line bg-soft rounded-xl overflow-hidden flex items-center justify-center text-muted text-[9px] shrink-0">
             {values.profilePhotoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -135,7 +142,7 @@ export function SiteSettingsForm({
             {isUploadingProfilePhoto && (
               <p className="text-muted text-[11px] mt-2">Mengunggah foto...</p>
             )}
-            <p className="text-muted text-[10px] mt-2">
+            <p className="text-muted text-[10px] mt-2 break-words">
               Bisa foto gedung SPPG, kepala SPPG, atau karyawan — akan tampil
               sebagai latar halaman Profil.
             </p>
@@ -144,7 +151,10 @@ export function SiteSettingsForm({
       </div>
 
       <div className="card p-5 space-y-3">
-        <h3 className="text-navy text-[13px] font-bold mb-1">Informasi Umum</h3>
+        <div className="flex items-center gap-2 mb-1">
+          <Info size={16} className="text-green" />
+          <h3 className="font-display text-navy text-[15px] m-0">Informasi Umum</h3>
+        </div>
 
         <div>
           <label className="block text-[10px] font-bold text-navy mb-1">Nama SPPG</label>
@@ -189,7 +199,10 @@ export function SiteSettingsForm({
       </div>
 
       <div className="card p-5 space-y-3">
-        <h3 className="text-navy text-[13px] font-bold mb-1">Media Sosial</h3>
+        <div className="flex items-center gap-2 mb-1">
+          <Share2 size={16} className="text-green" />
+          <h3 className="font-display text-navy text-[15px] m-0">Media Sosial</h3>
+        </div>
 
         <div>
           <label className="block text-[10px] font-bold text-navy mb-1">
@@ -219,7 +232,10 @@ export function SiteSettingsForm({
       </div>
 
       <div className="card p-5">
-        <h3 className="text-navy text-[13px] font-bold mb-3">Footer</h3>
+        <div className="flex items-center gap-2 mb-3">
+          <PanelBottom size={16} className="text-green" />
+          <h3 className="font-display text-navy text-[15px] m-0">Footer</h3>
+        </div>
         <label className="block text-[10px] font-bold text-navy mb-1">
           Teks Footer (kosongkan untuk pakai teks default)
         </label>
@@ -234,7 +250,7 @@ export function SiteSettingsForm({
         <button
           type="submit"
           disabled={isPending}
-          className="bg-navy text-white text-[13px] font-bold px-5 py-[10px] rounded-[10px] disabled:opacity-60"
+          className="bg-navy text-white text-[13px] font-medium px-6 py-[12px] rounded-full disabled:opacity-60"
         >
           {isPending ? "Menyimpan..." : "Simpan Pengaturan"}
         </button>

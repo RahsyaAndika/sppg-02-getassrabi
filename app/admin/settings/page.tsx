@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { SiteSettingsForm } from "@/components/admin/SiteSettingsForm";
+import { Settings } from "lucide-react";
 
 export default async function AdminSettingsPage() {
   const supabase = await createClient();
@@ -12,7 +13,11 @@ export default async function AdminSettingsPage() {
 
   return (
     <div>
-      <h2 className="text-navy text-[16px] font-bold mb-4">Pengaturan Website</h2>
+      <div className="flex items-center gap-2 mb-4">
+        <Settings size={18} className="text-green" />
+        <h2 className="font-display text-navy text-[19px] m-0">Pengaturan Website</h2>
+      </div>
+
       <SiteSettingsForm
         initialValues={{
           namaSppg: data?.nama_sppg ?? "",

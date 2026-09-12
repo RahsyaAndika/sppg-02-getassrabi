@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { MenuTable } from "@/components/admin/MenuTable";
 import { ExportMenuButtons } from "@/components/admin/ExportMenuButtons";
+import { UtensilsCrossed } from "lucide-react";
 
 const PAGE_SIZE = 10;
 
@@ -28,8 +29,7 @@ export default async function AdminMenuPage({
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="font-display text-navy text-[19px] m-0">Kelola Menu</h2>
+        <div className="flex items-center gap-2"><UtensilsCrossed size={18} className="text-green" /><h2 className="font-display text-navy text-[19px] m-0">Kelola Menu</h2>
           <p className="text-muted text-[11px] mt-1">
             {count ?? 0} menu terdaftar
           </p>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { LogIn } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -45,7 +46,10 @@ export default function LoginPage() {
         </Link>
 
         <div className="card p-[28px]">
-          <h1 className="font-display text-navy text-[24px] m-0">Admin SPPG</h1>
+          <div className="flex items-center gap-2">
+            <LogIn size={20} className="text-green" />
+            <h1 className="font-display text-navy text-[24px] m-0">Admin SPPG</h1>
+          </div>
           <p className="text-muted text-[12px] mt-1 mb-6">
             Masuk menggunakan email dan password admin.
           </p>

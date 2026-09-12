@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { getMenuExportData, type MenuExportItem } from "@/app/admin/menu/actions";
 import type { HistoryRange } from "@/lib/supabase/queries";
+import { FileText, FileSpreadsheet } from "lucide-react";
 
 const RANGE_OPTIONS: { value: HistoryRange; label: string }[] = [
   { value: "week", label: "1 Minggu Terakhir" },
@@ -279,15 +280,15 @@ export function ExportMenuButtons() {
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => openModal("pdf")}
-          className="border border-line text-navy text-[12px] font-medium px-4 py-[10px] rounded-full bg-white hover:bg-soft"
+          className="flex items-center gap-2 border border-line text-navy text-[12px] font-medium px-4 py-[10px] rounded-full bg-white hover:bg-soft"
         >
-          Export PDF
+          <FileText size={14} /> Export PDF
         </button>
         <button
           onClick={() => openModal("excel")}
-          className="border border-line text-navy text-[12px] font-medium px-4 py-[10px] rounded-full bg-white hover:bg-soft"
+          className="flex items-center gap-2 border border-line text-navy text-[12px] font-medium px-4 py-[10px] rounded-full bg-white hover:bg-soft"
         >
-          Export Excel
+          <FileSpreadsheet size={14} /> Export Excel
         </button>
       </div>
 

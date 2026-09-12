@@ -23,7 +23,7 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
               )}
             </div>
             <div>
-              <b className="block font-display text-[16px] tracking-tight">
+                <b className="block font-display text-[17px] tracking-tight">
                 {settings.nama_sppg}
               </b>
               <small className="block text-[#B9C6D6] text-[10px] mt-[2px]">

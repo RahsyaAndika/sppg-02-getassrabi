@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { AnnouncementTable } from "@/components/admin/AnnouncementTable";
+import { Megaphone } from "lucide-react";
 
 export default async function AdminPengumumanPage() {
   const supabase = await createClient();
@@ -13,8 +14,7 @@ export default async function AdminPengumumanPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h2 className="font-display text-navy text-[19px] m-0">Kelola Pengumuman</h2>          <p className="text-muted text-[11px] mt-1">
+        <div className="flex items-center gap-2"><Megaphone size={18} className="text-green" /><h2 className="font-display text-navy text-[19px] m-0">Kelola Pengumuman</h2>          <p className="text-muted text-[11px] mt-1">
             {items?.length ?? 0} pengumuman terdaftar
           </p>
         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 
 function formatTanggal(dateStr: string) {
   return new Date(dateStr + "T00:00:00").toLocaleDateString("id-ID", {
@@ -24,9 +25,9 @@ export function ArticleCard({
   return (
     <Link
       href={`/berita/${slug}`}
-      className="card overflow-hidden flex flex-col hover:shadow-[0_16px_40px_rgba(16,41,77,0.12)] transition-shadow"
+      className="card overflow-hidden flex flex-col hover:shadow-[0_16px_40px_rgba(18,42,76,0.12)] transition-shadow"
     >
-      <div className="h-[150px] bg-[#eef4f1] flex items-center justify-center text-muted text-[11px] overflow-hidden">
+      <div className="h-[150px] bg-soft flex items-center justify-center text-muted text-[11px] overflow-hidden">
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={imageUrl} alt={judul} className="w-full h-full object-cover" />
@@ -35,16 +36,15 @@ export function ArticleCard({
         )}
       </div>
       <div className="p-4 flex flex-col grow">
-        <small className="text-muted text-[9px] uppercase tracking-wide font-bold">
+        <span className="flex items-center gap-[5px] text-muted text-[11px]">
+          <CalendarDays size={12} />
           {formatTanggal(tanggalPublish)}
-        </small>
+        </span>
         <h3 className="font-display text-navy text-[15px] mt-1 mb-2 leading-snug line-clamp-2">
           {judul}
         </h3>
         {excerpt && (
-          <p className="text-muted text-[11px] leading-relaxed line-clamp-3">
-            {excerpt}
-          </p>
+          <p className="text-muted text-[11px] leading-relaxed line-clamp-3">{excerpt}</p>
         )}
       </div>
     </Link>

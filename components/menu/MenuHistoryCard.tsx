@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 
 function formatTanggal(dateStr: string) {
   return new Date(dateStr + "T00:00:00").toLocaleDateString("id-ID", {
@@ -35,7 +36,10 @@ export function MenuHistoryCard({
         )}
       </div>
       <div className="p-4">
-        <small className="text-muted text-[11px]">{formatTanggal(menuDate)}</small>
+        <span className="flex items-center gap-[5px] text-muted text-[11px]">
+          <CalendarDays size={12} />
+          {formatTanggal(menuDate)}
+        </span>
         <h3 className="font-display text-navy text-[15px] mt-1 mb-2 leading-snug line-clamp-2">
           {menuName}
         </h3>

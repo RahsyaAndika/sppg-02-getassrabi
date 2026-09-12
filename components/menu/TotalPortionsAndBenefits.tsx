@@ -1,3 +1,5 @@
+import { Users2, HeartHandshake } from "lucide-react";
+
 export function TotalPortionsAndBenefits({
   total,
   benefits,
@@ -7,7 +9,10 @@ export function TotalPortionsAndBenefits({
 }) {
   return (
     <section className="card p-[24px] my-4">
-      <h2 className="font-display text-navy text-[20px] mb-1">Total porsi</h2>
+      <div className="flex items-center gap-2 mb-1">
+        <Users2 size={17} className="text-green" />
+        <h2 className="font-display text-navy text-[20px] m-0">Total porsi</h2>
+      </div>
       <p className="text-muted text-[12px] mb-4">Jumlah porsi yang diproduksi hari ini.</p>
       <div className="bg-soft border border-line rounded-2xl p-[20px] max-w-[360px] mb-6">
         <small className="text-muted text-[11px]">Total porsi hari ini</small>
@@ -16,7 +21,10 @@ export function TotalPortionsAndBenefits({
         </strong>
       </div>
 
-      <h3 className="font-display text-navy text-[15px] mb-1">Penerima manfaat</h3>
+      <div className="flex items-center gap-2 mb-1">
+        <HeartHandshake size={16} className="text-green" />
+        <h3 className="font-display text-navy text-[15px] m-0">Penerima manfaat</h3>
+      </div>
       <p className="text-muted text-[12px] mb-3">Kelompok penerima yang dilayani SPPG.</p>
       <div className="flex flex-wrap gap-[8px]">
         {benefits.length > 0 ? (

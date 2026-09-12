@@ -1,4 +1,5 @@
 import type { SiteSettings } from "@/lib/supabase/queries";
+import { MapPin, Share2, Phone } from "lucide-react";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
   return (
@@ -6,7 +7,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <div className="max-w-[1080px] mx-auto px-[18px] py-12">
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-10">
           <div>
-            <div className="font-display text-white text-[19px] mb-2">
+            <div className="font-display text-white text-[20px] mb-2">
               {settings.nama_sppg}
             </div>
             <p className="text-[12px] leading-relaxed text-[#AEB9C6] max-w-[280px]">
@@ -16,32 +17,26 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </div>
 
           <div>
-            <h3 className="text-white text-[12px] font-semibold mb-3">Alamat</h3>
+            <h3 className="flex items-center gap-[6px] text-white text-[12px] font-semibold mb-3">
+              <MapPin size={13} /> Alamat
+            </h3>
             <p className="text-[12px] leading-relaxed text-[#AEB9C6]">
               {settings.alamat || "Belum diisi admin."}
             </p>
           </div>
 
           <div>
-            <h3 className="text-white text-[12px] font-semibold mb-3">Media sosial</h3>
+            <h3 className="flex items-center gap-[6px] text-white text-[12px] font-semibold mb-3">
+              <Share2 size={13} /> Media sosial
+            </h3>
             <div className="flex flex-col gap-2 text-[12px]">
               {settings.instagram && (
-                <a 
-                  href={settings.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#AEB9C6] hover:text-white transition-colors"
-                >
+                <a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="text-[#AEB9C6] hover:text-white transition-colors">
                   Instagram
                 </a>
               )}
               {settings.tiktok && (
-                <a
-                  href={settings.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#AEB9C6] hover:text-white transition-colors"
-                >
+                <a href={settings.tiktok} target="_blank" rel="noopener noreferrer" className="text-[#AEB9C6] hover:text-white transition-colors">
                   TikTok
                 </a>
               )}
@@ -52,7 +47,9 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </div>
 
           <div>
-            <h3 className="text-white text-[12px] font-semibold mb-3">Kontak</h3>
+            <h3 className="flex items-center gap-[6px] text-white text-[12px] font-semibold mb-3">
+              <Phone size={13} /> Kontak
+            </h3>
             <p className="text-[12px] leading-relaxed text-[#AEB9C6]">
               {settings.kontak || "Belum diisi admin."}
             </p>

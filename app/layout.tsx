@@ -19,12 +19,31 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sppg-02-getassrabi.vercel.app";
+  const description =
+    settings.deskripsi ||
+    "Portal informasi layanan Makan Bergizi Gratis SPPG Getassrabi 02: menu harian, kandungan gizi, dan jumlah porsi.";
+  const previewImage = settings.logo_url || `${siteUrl}/bgn.png`;
 
   return {
+    metadataBase: new URL(siteUrl),
     title: `${settings.nama_sppg} — Informasi Menu MBG`,
-    description:
-      "Portal informasi layanan Makan Bergizi Gratis SPPG Getassrabi 02: menu harian, kandungan gizi, dan jumlah porsi.",
+    description,
     ...(settings.logo_url ? { icons: { icon: settings.logo_url } } : {}),
+    openGraph: {
+      title: `${settings.nama_sppg} — Informasi Menu MBG`,
+      description,
+      siteName: settings.nama_sppg,
+      images: [{ url: previewImage, width: 1200, height: 630 }],
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${settings.nama_sppg} — Informasi Menu MBG`,
+      description,
+      images: [previewImage],
+    },
   };
 }
 

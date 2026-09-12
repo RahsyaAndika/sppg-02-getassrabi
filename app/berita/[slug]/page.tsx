@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticleBySlug } from "@/lib/supabase/queries";
+import type { Metadata } from "next";
 
 function formatTanggal(dateStr: string) {
   return new Date(dateStr + "T00:00:00").toLocaleDateString("id-ID", {
@@ -9,6 +10,39 @@ function formatTanggal(dateStr: string) {
     month: "long",
     year: "numeric",
   });
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return { title: "Berita tidak ditemukan" };
+  }
+
+  const description = article.excerpt || "Berita dari SPPG Getassrabi 02.";
+
+  return {
+    title: article.judul,
+    description,
+    openGraph: {
+      title: article.judul,
+      description,
+      type: "article",
+      publishedTime: article.tanggal_publish,
+      images: article.image_url ? [{ url: article.image_url, width: 1200, height: 630 }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.judul,
+      description,
+      images: article.image_url ? [article.image_url] : [],
+    },
+  };
 }
 
 export default async function ArticleDetailPage({

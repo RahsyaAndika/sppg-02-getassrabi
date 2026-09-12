@@ -17,11 +17,16 @@ const plusJakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "SPPG Getassrabi 02 — Informasi Menu MBG",
-  description:
-    "Portal informasi layanan Makan Bergizi Gratis SPPG Getassrabi 02: menu harian, kandungan gizi, dan jumlah porsi.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+
+  return {
+    title: `${settings.nama_sppg} — Informasi Menu MBG`,
+    description:
+      "Portal informasi layanan Makan Bergizi Gratis SPPG Getassrabi 02: menu harian, kandungan gizi, dan jumlah porsi.",
+    ...(settings.logo_url ? { icons: { icon: settings.logo_url } } : {}),
+  };
+}
 
 export default async function RootLayout({
   children,

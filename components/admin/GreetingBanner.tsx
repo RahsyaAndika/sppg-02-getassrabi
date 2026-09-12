@@ -7,29 +7,29 @@ type GreetingPeriod = "pagi" | "siang" | "sore" | "malam";
 
 const GREETING_CONFIG: Record<
   GreetingPeriod,
-  { label: string; keywords: string; overlay: string; icon: typeof Sun }
+  { label: string; photo: string; overlay: string; icon: typeof Sun }
 > = {
   pagi: {
     label: "Selamat pagi",
-    keywords: "ricefield,sunrise,mountain",
+    photo: "admin-greeting/pagi.jpeg",
     overlay: "linear-gradient(120deg, rgba(18,42,76,0.85), rgba(22,58,45,0.5))",
     icon: Sunrise,
   },
   siang: {
     label: "Selamat siang",
-    keywords: "city,street,traffic",
+    photo: "admin-greeting/siang.jpeg",
     overlay: "linear-gradient(120deg, rgba(18,42,76,0.85), rgba(18,42,76,0.55))",
     icon: Sun,
   },
   sore: {
     label: "Selamat sore",
-    keywords: "sunset,beach,ocean",
+    photo: "admin-greeting/sore.jpeg",
     overlay: "linear-gradient(120deg, rgba(18,42,76,0.88), rgba(90,60,20,0.5))",
     icon: Sunset,
   },
   malam: {
     label: "Selamat malam",
-    keywords: "city,night,skyline",
+    photo: "admin-greeting/malam.jpeg",
     overlay: "linear-gradient(120deg, rgba(8,14,26,0.9), rgba(18,42,76,0.65))",
     icon: Moon,
   },
@@ -52,35 +52,33 @@ export function GreetingBanner({
   initial: string;
 }) {
   const [period, setPeriod] = useState<GreetingPeriod>("pagi");
-  const [photoUrl, setPhotoUrl] = useState("");
-  const [bgLoaded, setBgLoaded] = useState(false);
+  const [photoAvailable, setPhotoAvailable] = useState(false);
 
+  // Hitung periode waktu dari jam PERANGKAT PENGGUNA (client), bukan server.
   useEffect(() => {
     setPeriod(getGreetingPeriod(new Date().getHours()));
   }, []);
 
-  useEffect(() => {
-    const config = GREETING_CONFIG[period];
-    const lockKey = new Date().toDateString();
-    const url = `https://loremflickr.com/1200/700/${config.keywords}?lock=${encodeURIComponent(lockKey)}`;
-
-    setBgLoaded(false);
-    setPhotoUrl(url);
-
-    const img = new window.Image();
-    img.onload = () => setBgLoaded(true);
-    img.onerror = () => setBgLoaded(false);
-    img.src = url;
-  }, [period]);
-
   const config = GREETING_CONFIG[period];
   const Icon = config.icon;
+
+  // Cek foto lokal benar-benar ada sebelum dipasang sebagai background,
+  // supaya kalau file belum diupload admin, tidak muncul gambar rusak.
+  useEffect(() => {
+    setPhotoAvailable(false);
+    const img = new window.Image();
+    img.onload = () => setPhotoAvailable(true);
+    img.onerror = () => setPhotoAvailable(false);
+    img.src = config.photo;
+  }, [config.photo]);
 
   return (
     <div
       className="relative overflow-hidden rounded-[18px] mb-6 border border-line bg-navy"
       style={{
-        backgroundImage: bgLoaded ? `${config.overlay}, url(${photoUrl})` : config.overlay,
+        backgroundImage: photoAvailable
+          ? `${config.overlay}, url(${config.photo})`
+          : config.overlay,
         backgroundSize: "cover",
         backgroundPosition: "center",
         transition: "background-image 0.4s ease",
@@ -96,7 +94,7 @@ export function GreetingBanner({
               <Icon size={13} />
               {config.label},
             </p>
-            <h1 className="font-display text-white text-[26px] md:text-[30px] m-0 truncate">
+            <h1 className="font-display italic text-white text-[26px] md:text-[30px] m-0 truncate">
               {name}
             </h1>
             <span className="inline-block mt-[8px] px-[10px] py-[4px] rounded-full bg-white/[.14] text-white text-[10px] font-medium">
